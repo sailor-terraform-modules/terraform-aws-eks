@@ -44,7 +44,7 @@ resource "aws_eks_cluster" "cluster" {
   enabled_cluster_log_types = var.enable_log_types
 
   dynamic "encryption_config" {
-    for_each = length(keys(var.arn)) == 0 ? [] : [true]
+    for_each = length(var.arn) == 0 ? [] : [true]
     content {
       provider {
         key_arn = data.aws_kms_key.key_arn.id
